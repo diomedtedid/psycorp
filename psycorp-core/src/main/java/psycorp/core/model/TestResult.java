@@ -18,4 +18,11 @@ public class TestResult {
     public void setTestResultMap(Map<Area, Map<Scale, Integer>> testResultMap) {
         this.testResultMap = testResultMap;
     }
+
+    @Override
+    public String toString() {
+        return "TestResult{" +
+                "testResultMap=" + testResultMap +
+                '}';
+    }
 }
