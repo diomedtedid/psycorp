@@ -22,7 +22,6 @@ public class TestProcessor {
         }
 
         TestResult testResult = new TestResult();
-        testResult.setTestCore(test);
         Map<Area, Map<Scale, Integer>> testResultMap = new EnumMap<>(Area.class);
         for (Area area : Area.values()) {
             Map<Scale, Integer> scaleIntegerMap = new EnumMap<>(Scale.class);

@@ -48,7 +48,6 @@ public class TestProcessorTest {
         fillTest(test);
 
         TestResult testResult = TestProcessor.countTest(test);
-        assertReflectionEquals (test, testResult.getTestCore());
         Map<Area, Map<Scale, Integer>> testResultMap = testResult.getTestResultMap();
         assertEquals(3, testResultMap.keySet().size());
         for (Area area : Area.values()) {
