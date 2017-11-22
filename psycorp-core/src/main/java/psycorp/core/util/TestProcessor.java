@@ -39,6 +39,7 @@ public class TestProcessor {
 
                 Answer answer = match.getAnswer();
                 Scale scale = null;
+
                 switch (answer) {
                     case FIRST:
                         scale = match.getPair().getFirstScale();
