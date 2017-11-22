@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
  * Created by User on 21.11.2017.
@@ -45,7 +46,10 @@ public class TestProcessorTest {
     public void countTestTest() {
         assertNull(TestProcessor.countTest(test));
         fillTest(test);
-        Map<Area, Map<Scale, Integer>> testResultMap = TestProcessor.countTest(test).getTestResultMap();
+
+        TestResult testResult = TestProcessor.countTest(test);
+        assertReflectionEquals (test, testResult.getTestCore());
+        Map<Area, Map<Scale, Integer>> testResultMap = testResult.getTestResultMap();
         assertEquals(3, testResultMap.keySet().size());
         for (Area area : Area.values()) {
             Map<Scale, Integer> scaleIntegerMap = testResultMap.get(area);
