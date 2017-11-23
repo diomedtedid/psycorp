@@ -16,7 +16,7 @@ import java.util.*;
  */
 public final class TestFactory {
     private static volatile TestFactory testFactory;
-    private static String resourceBundlePath = "psycorp.core.util.resources.Questions" ;
+    private static String resourceBundlePath = "psycorp.core.util.questionsource.Questions" ;
     private static Map<Locale, Map<Area, Set<Question>>> questionMapByLanguage = new HashMap<>();
 
     private TestFactory() {

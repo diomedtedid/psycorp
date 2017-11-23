@@ -1,4 +1,4 @@
-package psycorp.core.util.resources;
+package psycorp.core.util.questionsource;
 
 import java.util.ListResourceBundle;
 
