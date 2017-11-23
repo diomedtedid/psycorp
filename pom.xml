@@ -8,6 +8,8 @@
     <artifactId>psycorp</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+
     <modules>
         <module>psycorp-core</module>
     </modules>
@@ -20,6 +22,7 @@
                 <configuration>
                     <target>1.8</target>
                     <source>1.8</source>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>
