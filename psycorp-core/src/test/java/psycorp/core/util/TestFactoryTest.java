@@ -210,7 +210,7 @@ public class TestFactoryTest {
 
     @Test
     public void getTestWithTestCore() throws Exception {
-        TestCore testCore = TestCoreFactory.getTest();
+        TestCore testCore = TestFactory.getTestCore();
         testCore.setId(1);
 
         Iterator<Match> iterator = testCore.getMatches().iterator();
@@ -226,6 +226,28 @@ public class TestFactoryTest {
         while (iterator1.hasNext()) {
             assertEquals(Answer.FIRST, iterator1.next().getAnswer());
         }
+    }
+
+    @Test
+    public void getTestCoreTest() throws Exception {
+        TestCore testCore = TestFactory.getTestCore();
+        Set<Match> matches = testCore.getMatches();
+
+        assertEquals(45, matches.size());
+
+        assertTrue(matches.stream().noneMatch(match -> match.getId() != 0));
+
+        long answerCount = matches.stream().filter(match -> match.getAnswer()== Answer.NAN).count();
+        assertEquals(45, answerCount);
+
+        long goalAreaCount = matches.stream().filter(match -> match.getArea() == Area.GOAL).count();
+        assertEquals(15, goalAreaCount);
+
+        long qualityAreaCount = matches.stream().filter(match -> match.getArea() == Area.QUALITY).count();
+        assertEquals(15, qualityAreaCount);
+
+        long stateAreaCount = matches.stream().filter(match -> match.getArea() == Area.STATE).count();
+        assertEquals(15, stateAreaCount);
     }
 
 }

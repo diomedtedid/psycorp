@@ -1,17 +1,18 @@
 package psycorp.core.util;
 
+import psycorp.core.model.Match;
 import psycorp.core.model.Question;
 import psycorp.core.model.Test;
 import psycorp.core.model.TestCore;
-import psycorp.core.model.TestImpl;
 import psycorp.core.model.enums.Area;
+import psycorp.core.model.enums.Pair;
 import psycorp.core.model.enums.Scale;
 
-import java.nio.file.Path;
 import java.util.*;
 
 /**
  * Created by User on 18.11.2017.
+ * TODO: прописать заполнения мапой разными локалями. Китайцу выдало английский, но в локали записался китаец (накопление разных локалей)
  */
 public final class TestFactory {
     private static String resourceBundlePath = "psycorp.core.util.resources.Questions" ;
@@ -23,8 +24,7 @@ public final class TestFactory {
             fillQuestionMapByLanguage (locale);
         }
         Map<Area, Set<Question>> questionsMap = questionMapByLanguage.get(locale);
-        TestCore testCore = TestCoreFactory.getTest();
-        Test test = new TestImpl(testCore, questionsMap);
+        Test test = new Test(getTestCore(), questionsMap);
         return test;
     }
 
@@ -33,7 +33,7 @@ public final class TestFactory {
             fillQuestionMapByLanguage (locale);
         }
         Map<Area, Set<Question>> questionsMap = questionMapByLanguage.get(locale);
-        Test test = new TestImpl(testCore, questionsMap);
+        Test test = new Test(testCore, questionsMap);
         return test;
     }
 
@@ -58,6 +58,24 @@ public final class TestFactory {
         }
 
         questionMapByLanguage.put(locale, questionsMap);
+    }
+
+    public static TestCore getTestCore() {
+        TestCore testCore = new TestCore();
+        Set<Match> matches = new HashSet<Match>(45, 1);
+
+        Area[] areas = Area.values();
+        Pair[] pairs = Pair.values();
+
+        for (Area area : areas) {
+            for (Pair pair : pairs) {
+                Match match = new Match(area, pair);
+                matches.add(match);
+            }
+        }
+        testCore.setMatches(matches);
+
+        return testCore;
     }
 
 }

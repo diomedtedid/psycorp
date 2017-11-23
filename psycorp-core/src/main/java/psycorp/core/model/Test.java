@@ -6,8 +6,19 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by User on 18.11.2017.
+ * Created by User on 10.11.2017.
  */
-public interface Test extends TestCore {
-    Map<Area, Set<Question>> getQuestions();
+public class Test extends TestCore {
+    private final Map<Area, Set<Question>> questions;
+
+    public Test(TestCore testCore, Map<Area, Set<Question>> questions) {
+        this.questions = questions;
+        setId(testCore.getId());
+        setMatches(testCore.getMatches());
+    }
+
+    public Map<Area, Set<Question>> getQuestions() {
+        return questions;
+    }
+
 }

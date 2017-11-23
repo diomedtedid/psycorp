@@ -1,9 +1,6 @@
 package psycorp.core.util;
 
-import psycorp.core.model.Match;
-import psycorp.core.model.Test;
-import psycorp.core.model.TestCore;
-import psycorp.core.model.TestResult;
+import psycorp.core.model.*;
 import psycorp.core.model.enums.Answer;
 import psycorp.core.model.enums.Area;
 import psycorp.core.model.enums.Scale;
@@ -59,5 +56,9 @@ public class TestProcessor {
         testResult.setTestResultMap(testResultMap);
 
         return testResult;
+    }
+
+    public static TestCompareResult compare (TestResult testResult1, TestResult testResult2) {
+        return null;
     }
 }
