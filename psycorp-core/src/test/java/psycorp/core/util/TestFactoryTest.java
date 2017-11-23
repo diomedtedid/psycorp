@@ -1,5 +1,6 @@
 package psycorp.core.util;
 
+import org.junit.Before;
 import org.junit.Test;
 import psycorp.core.model.Match;
 import psycorp.core.model.Question;
@@ -19,9 +20,16 @@ import static org.junit.Assert.*;
  * Created by User on 19.11.2017.
  */
 public class TestFactoryTest {
+    private TestFactory testFactory;
+
+    @Before
+    public void setUp() {
+        testFactory = TestFactory.getInctance();
+    }
+
     @Test
     public void getTestDefaultTest() throws Exception {
-        psycorp.core.model.Test test = TestFactory.getTest(new Locale(""));
+        psycorp.core.model.Test test = testFactory.getTest(new Locale(""));
         Map<Area, Set<Question>> questions = test.getQuestions();
         assertEquals(3, questions.size());
         Area[] areas = Area.values();
@@ -60,7 +68,7 @@ public class TestFactoryTest {
 
     @Test
     public void getTestRuTest() throws Exception {
-        psycorp.core.model.Test test = TestFactory.getTest(new Locale("ru"));
+        psycorp.core.model.Test test = testFactory.getTest(new Locale("ru"));
         Map<Area, Set<Question>> questions = test.getQuestions();
         assertEquals(3, questions.size());
         Area[] areas = Area.values();
@@ -110,7 +118,7 @@ public class TestFactoryTest {
 
     @Test
     public void getTestUaTest() throws Exception {
-        psycorp.core.model.Test test = TestFactory.getTest(new Locale("ua"));
+        psycorp.core.model.Test test = testFactory.getTest(new Locale("ua"));
         Map<Area, Set<Question>> questions = test.getQuestions();
         assertEquals(3, questions.size());
         Area[] areas = Area.values();
@@ -160,7 +168,7 @@ public class TestFactoryTest {
 
     @Test
     public void getTestEnTest() throws Exception {
-        psycorp.core.model.Test test = TestFactory.getTest(new Locale("en"));
+        psycorp.core.model.Test test = testFactory.getTest(new Locale("en"));
         Map<Area, Set<Question>> questions = test.getQuestions();
         assertEquals(3, questions.size());
         Area[] areas = Area.values();
@@ -218,7 +226,7 @@ public class TestFactoryTest {
             iterator.next().setAnswer(Answer.FIRST);
         }
 
-        psycorp.core.model.Test test = TestFactory.getTest(testCore, new Locale("ru"));
+        psycorp.core.model.Test test = testFactory.getTest(testCore, new Locale("ru"));
 
         assertEquals(1, test.getId());
 

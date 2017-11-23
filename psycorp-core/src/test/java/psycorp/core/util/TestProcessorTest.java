@@ -23,10 +23,12 @@ import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEqua
 public class TestProcessorTest {
 
     psycorp.core.model.Test test;
+    TestFactory testFactory;
 
     @Before
     public void setUp() throws Exception {
-        test = TestFactory.getTest(new Locale(""));
+        this.testFactory = TestFactory.getInctance();
+        test = testFactory.getTest(new Locale(""));
 
     }
 

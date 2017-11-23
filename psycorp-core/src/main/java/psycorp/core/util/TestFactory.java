@@ -15,11 +15,25 @@ import java.util.*;
  * TODO: прописать заполнения мапой разными локалями. Китайцу выдало английский, но в локали записался китаец (накопление разных локалей)
  */
 public final class TestFactory {
+    private static volatile TestFactory testFactory;
     private static String resourceBundlePath = "psycorp.core.util.resources.Questions" ;
     private static Map<Locale, Map<Area, Set<Question>>> questionMapByLanguage = new HashMap<>();
 
+    private TestFactory() {
+    }
 
-    public static Test getTest (Locale locale) {
+    public static TestFactory getInctance () {
+        if (testFactory == null) {
+            synchronized (TestFactory.class) {
+                if (testFactory == null) {
+                    testFactory = new TestFactory();
+                }
+            }
+        }
+        return testFactory;
+    }
+
+    public Test getTest (Locale locale) {
         if (!questionMapByLanguage.containsKey(locale)) {
             fillQuestionMapByLanguage (locale);
         }
@@ -28,7 +42,7 @@ public final class TestFactory {
         return test;
     }
 
-    public static Test getTest (TestCore testCore, Locale locale) {
+    public Test getTest (TestCore testCore, Locale locale) {
         if (!questionMapByLanguage.containsKey(locale)) {
             fillQuestionMapByLanguage (locale);
         }
@@ -37,7 +51,7 @@ public final class TestFactory {
         return test;
     }
 
-    private static void fillQuestionMapByLanguage(Locale locale) {
+    private void fillQuestionMapByLanguage(Locale locale) {
         Map<Area, Set<Question>> questionsMap = new EnumMap<>(Area.class);
         Area[] areas = Area.values();
         Scale [] scales = Scale.values();
