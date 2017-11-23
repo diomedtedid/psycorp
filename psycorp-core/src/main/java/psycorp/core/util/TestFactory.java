@@ -42,6 +42,7 @@ public final class TestFactory {
         return test;
     }
 
+
     public Test getTest (TestCore testCore, Locale locale) {
         if (!questionMapByLanguage.containsKey(locale)) {
             fillQuestionMapByLanguage (locale);
@@ -50,6 +51,26 @@ public final class TestFactory {
         Test test = new Test(testCore, questionsMap);
         return test;
     }
+
+
+    public static TestCore getTestCore() {
+        TestCore testCore = new TestCore();
+        Set<Match> matches = new HashSet<Match>(45, 1);
+
+        Area[] areas = Area.values();
+        Pair[] pairs = Pair.values();
+
+        for (Area area : areas) {
+            for (Pair pair : pairs) {
+                Match match = new Match(area, pair);
+                matches.add(match);
+            }
+        }
+        testCore.setMatches(matches);
+
+        return testCore;
+    }
+
 
     private void fillQuestionMapByLanguage(Locale locale) {
         Map<Area, Set<Question>> questionsMap = new EnumMap<>(Area.class);
@@ -74,22 +95,5 @@ public final class TestFactory {
         questionMapByLanguage.put(locale, questionsMap);
     }
 
-    public static TestCore getTestCore() {
-        TestCore testCore = new TestCore();
-        Set<Match> matches = new HashSet<Match>(45, 1);
-
-        Area[] areas = Area.values();
-        Pair[] pairs = Pair.values();
-
-        for (Area area : areas) {
-            for (Pair pair : pairs) {
-                Match match = new Match(area, pair);
-                matches.add(match);
-            }
-        }
-        testCore.setMatches(matches);
-
-        return testCore;
-    }
 
 }
