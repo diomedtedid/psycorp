@@ -2,7 +2,6 @@ package psycorp.core.model;
 
 import psycorp.core.model.enums.Area;
 import psycorp.core.model.enums.Scale;
-import psycorp.core.util.TestProcessor;
 
 import java.util.Map;
 
@@ -11,15 +10,14 @@ import java.util.Map;
  */
 public class TestResult {
     private long id;
+    private Map<Scale, Integer> testProfile;
 
-    private Map<Area, Map<Scale, Integer>> testResultMap;
-
-    public void setTestResultMap(Map<Area, Map<Scale, Integer>> testResultMap) {
-        this.testResultMap = testResultMap;
+    public void setTestProfile(Map<Scale, Integer> testProfile) {
+        this.testProfile = testProfile;
     }
 
-    public Map<Area, Map<Scale, Integer>> getTestResultMap() {
-        return testResultMap;
+    public Map<Scale, Integer> getTestProfile() {
+        return testProfile;
     }
 
     public long getId() {
@@ -34,7 +32,7 @@ public class TestResult {
     public String toString() {
         return "TestResult{" +
                 "id=" + id +
-                "testResultMap=" + testResultMap +
+                "testProfile=" + testProfile +
                 '}';
     }
 }

@@ -50,19 +50,17 @@ public class TestProcessorTest {
         fillTest(test);
 
         TestResult testResult = TestProcessor.countTest(test);
-        Map<Area, Map<Scale, Integer>> testResultMap = testResult.getTestResultMap();
-        assertEquals(3, testResultMap.keySet().size());
-        for (Area area : Area.values()) {
-            Map<Scale, Integer> scaleIntegerMap = testResultMap.get(area);
-            assertEquals(6, scaleIntegerMap.keySet().size());
+        Map<Scale, Integer> testProfile = testResult.getTestProfile();
 
-            assertEquals(5, (int)scaleIntegerMap.get(Scale.ONE));
-            assertEquals(4, (int)scaleIntegerMap.get(Scale.TWO));
-            assertEquals(3, (int)scaleIntegerMap.get(Scale.THREE));
-            assertEquals(2, (int)scaleIntegerMap.get(Scale.FOUR));
-            assertEquals(1, (int)scaleIntegerMap.get(Scale.FIVE));
-            assertEquals(0, (int)scaleIntegerMap.get(Scale.SIX));
-        }
+            assertEquals(6, testProfile.keySet().size());
+
+            assertEquals(15, (int)testProfile.get(Scale.ONE));
+            assertEquals(12, (int)testProfile.get(Scale.TWO));
+            assertEquals(9, (int)testProfile.get(Scale.THREE));
+            assertEquals(6, (int)testProfile.get(Scale.FOUR));
+            assertEquals(3, (int)testProfile.get(Scale.FIVE));
+            assertEquals(0, (int)testProfile.get(Scale.SIX));
+
     }
 
     private static void fillTest(TestCore test) {

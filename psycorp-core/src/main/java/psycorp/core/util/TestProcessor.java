@@ -22,38 +22,28 @@ public final class TestProcessor {
         }
 
         TestResult testResult = new TestResult();
-        Map<Area, Map<Scale, Integer>> testResultMap = new EnumMap<>(Area.class);
-        for (Area area : Area.values()) {
-            Map<Scale, Integer> scaleIntegerMap = new EnumMap<>(Scale.class);
-            //fill scaleIntegerMap with zero values
-            Arrays.stream(Scale.values()).forEach(scale -> scaleIntegerMap.put(scale, 0));
-            testResultMap.put(area, scaleIntegerMap);
-        }
+        Map<Scale, Integer> testProfile = new EnumMap<>(Scale.class);
+        //fill scaleIntegerMap with zero values
+        Arrays.stream(Scale.values()).forEach(scale -> testProfile.put(scale, 0));
 
-        for (Area area : Area.values()) {
-            Set<Match> matches = test.getMatches();
-            for (Match match : matches) {
-
-                Answer answer = match.getAnswer();
-                Scale scale = null;
-
-                switch (answer) {
-                    case FIRST:
-                        scale = match.getPair().getFirstScale();
-                        break;
-                    case SECOND:
-                        scale = match.getPair().getSecondScale();
-                        break;
-                }
-
-                if (match.getArea() == area) {
-                    Map<Scale, Integer> scaleIntegerMap = testResultMap.get(area);
-                    scaleIntegerMap.put(scale, scaleIntegerMap.get(scale)+ 1);
-                }
+        Set<Match> matches = test.getMatches();
+        for (Match match : matches) {
+            Answer answer = match.getAnswer();
+            Scale scale = null;
+            switch (answer) {
+                case FIRST:
+                    scale = match.getPair().getFirstScale();
+                    break;
+                case SECOND:
+                    scale = match.getPair().getSecondScale();
+                    break;
             }
+
+            Integer integer = testProfile.get(scale);
+            testProfile.put(scale, integer + 1);
         }
 
-        testResult.setTestResultMap(testResultMap);
+        testResult.setTestProfile(testProfile);
 
         return testResult;
     }
