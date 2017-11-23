@@ -10,6 +10,7 @@ import java.util.Set;
 public class TestCore {
     private long id;
     private Set<Match> matches;
+    private TestResult testResult;
 
     public long getId() {
         return id;
@@ -25,5 +26,13 @@ public class TestCore {
 
     public void setMatches(Set<Match> matches) {
         this.matches = matches;
+    }
+
+    public TestResult getTestResult() {
+        return testResult;
+    }
+
+    public void setTestResult(TestResult testResult) {
+        this.testResult = testResult;
     }
 }

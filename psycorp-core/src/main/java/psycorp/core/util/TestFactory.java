@@ -57,6 +57,7 @@ public final class TestFactory {
         TestCore testCore = new TestCore();
         Set<Match> matches = new HashSet<Match>(45, 1);
 
+
         Area[] areas = Area.values();
         Pair[] pairs = Pair.values();
 
@@ -67,6 +68,7 @@ public final class TestFactory {
             }
         }
         testCore.setMatches(matches);
+        testCore.setTestResult(null);
 
         return testCore;
     }

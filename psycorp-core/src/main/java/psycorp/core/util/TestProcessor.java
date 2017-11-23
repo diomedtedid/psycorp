@@ -45,6 +45,8 @@ public final class TestProcessor {
 
         testResult.setTestProfile(testProfile);
 
+        test.setTestResult(testResult);
+
         return testResult;
     }
 

@@ -61,6 +61,9 @@ public class TestProcessorTest {
             assertEquals(3, (int)testProfile.get(Scale.FIVE));
             assertEquals(0, (int)testProfile.get(Scale.SIX));
 
+
+        assertEquals(testResult, test.getTestResult());
+
     }
 
     private static void fillTest(TestCore test) {
