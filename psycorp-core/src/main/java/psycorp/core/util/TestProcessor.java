@@ -50,7 +50,13 @@ public final class TestProcessor {
         return testResult;
     }
 
-    public static TestCompareResult compare (TestResult testResult1, TestResult testResult2) {
+    public static TestCompareResult compare (TestCore test1, TestCore test2) {
+        boolean arePassed = isPassed(test1) && isPassed(test2);
+        if (!arePassed){
+            return null;
+        }
+
+
         return null;
     }
 }
