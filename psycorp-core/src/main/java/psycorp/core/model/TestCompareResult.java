@@ -1,6 +1,5 @@
 package psycorp.core.model;
 
-import java.util.Map;
 
 /**
  * Created by User on 22.11.2017.
@@ -41,5 +40,15 @@ public class TestCompareResult {
 
     public void setStateResult(int stateResult) {
         this.stateResult = stateResult;
+    }
+
+    @Override
+    public String toString() {
+        return "TestCompareResult{" +
+                "generalResult=" + generalResult +
+                ", goalResult=" + goalResult +
+                ", qualityResult=" + qualityResult +
+                ", stateResult=" + stateResult +
+                '}';
     }
 }

@@ -1,6 +1,5 @@
 package psycorp.core.model;
 
-import psycorp.core.model.enums.Area;
 import psycorp.core.model.enums.Scale;
 
 import java.util.Map;

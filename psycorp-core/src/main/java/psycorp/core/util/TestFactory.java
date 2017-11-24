@@ -7,7 +7,6 @@ import psycorp.core.model.TestCore;
 import psycorp.core.model.enums.Area;
 import psycorp.core.model.enums.Pair;
 import psycorp.core.model.enums.Scale;
-
 import java.util.*;
 
 /**

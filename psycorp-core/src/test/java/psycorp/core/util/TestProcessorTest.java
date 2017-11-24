@@ -3,6 +3,7 @@ package psycorp.core.util;
 import org.junit.Before;
 import org.junit.Test;
 import psycorp.core.model.Match;
+import psycorp.core.model.TestCompareResult;
 import psycorp.core.model.TestCore;
 import psycorp.core.model.TestResult;
 import psycorp.core.model.enums.Answer;
@@ -66,7 +67,28 @@ public class TestProcessorTest {
 
     }
 
-    private static void fillTest(TestCore test) {
+    @Test
+    public void testCompareTest () {
+        psycorp.core.model.Test test2 = testFactory.getTest(new Locale(""));
+        assertNull(TestProcessor.compare(test, test2));
+        fillTest(test);
+        assertNull(TestProcessor.compare(test, test2));
+        fillTest(test2);
+        assertNotNull(TestProcessor.compare(test, test2));
+        TestCompareResult testCompareResult = TestProcessor.compare(test, test2);
+        assertEquals(45, testCompareResult.getGeneralResult());
+        assertEquals(15, testCompareResult.getGoalResult());
+        assertEquals(15, testCompareResult.getQualityResult());
+        assertEquals(15, testCompareResult.getStateResult());
+        test2.getMatches().stream().forEach(match -> match.setAnswer(Answer.SECOND));
+        testCompareResult = TestProcessor.compare(test, test2);
+        assertEquals(0, testCompareResult.getGeneralResult());
+        assertEquals(0, testCompareResult.getGoalResult());
+        assertEquals(0, testCompareResult.getQualityResult());
+        assertEquals(0, testCompareResult.getStateResult());
+    }
+
+    private void fillTest(TestCore test) {
         test.getMatches().stream().forEach(match -> match.setAnswer(Answer.FIRST));
     }
 

@@ -2,7 +2,6 @@ package psycorp.core.util;
 
 import psycorp.core.model.*;
 import psycorp.core.model.enums.Answer;
-import psycorp.core.model.enums.Area;
 import psycorp.core.model.enums.Scale;
 
 import java.util.*;
@@ -56,7 +55,46 @@ public final class TestProcessor {
             return null;
         }
 
+        TestCompareResult testCompareResult = new TestCompareResult();
+        int generalResult = 0;
+        int goalResult = 0;
+        int qualityResult = 0;
+        int stateResult = 0;
 
-        return null;
+
+        Set<Match> test1Matches = new HashSet<>(test1.getMatches());
+        Set<Match> test2Matches = new HashSet<>(test2.getMatches());
+
+        for (Match match1 : test1Matches) {
+            Iterator<Match> matchIterator2 = test2Matches.iterator();
+            while (matchIterator2.hasNext()) {
+                Match match2 = matchIterator2.next();
+                if (match1.getArea() == match2.getArea() && match1.getPair() == match2.getPair()) {
+                    if (match1.getAnswer() == match2.getAnswer()) {
+                        generalResult++;
+                        switch (match1.getArea()) {
+                            case QUALITY:
+                                qualityResult++;
+                                break;
+                            case STATE:
+                                stateResult++;
+                                break;
+                            case GOAL:
+                                goalResult++;
+                                break;
+                        }
+                    }
+                    matchIterator2.remove();
+                    break;
+                }
+            }
+        }
+
+        testCompareResult.setGeneralResult(generalResult);
+        testCompareResult.setGoalResult(goalResult);
+        testCompareResult.setQualityResult(qualityResult);
+        testCompareResult.setStateResult(stateResult);
+
+        return testCompareResult;
     }
 }
