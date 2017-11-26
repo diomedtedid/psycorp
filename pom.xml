@@ -12,6 +12,7 @@
 
     <modules>
         <module>psycorp-core</module>
+        <module>psycorp-web</module>
     </modules>
     <build>
         <plugins>

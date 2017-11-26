@@ -1,0 +1,6 @@
+*.iml
+.idea/
+*/target/
+
+/psycorp-core/src/main/java/temp/
+/psycorp-core/src/main/java/psycorp/core/util/questionsource/
